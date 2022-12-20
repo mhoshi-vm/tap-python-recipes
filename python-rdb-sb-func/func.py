@@ -21,9 +21,11 @@ except binding.ServiceBindingRootMissingError as msg:
     # log the error message and retry/exit
     print("SERVICE_BINDING_ROOT env var not set")
 
-db = postgresql.open('pq://' + username + ":" + password + "@" + host + ":" + port + "/" + database)
+db_url = 'pq://' + username + ":" + password + "@" + host + ":" + port + "/" + database
+db = postgresql.open()
 
 
 def main(req: Any):
+    print(db_url)
     get_table = db.prepare("SELECT * from information_schema.tables WHERE table_name = $1")
     return print(get_table("tables"))
