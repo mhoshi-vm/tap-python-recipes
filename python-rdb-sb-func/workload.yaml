@@ -5,6 +5,10 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
   name: py-sb
 spec:
+  build:
+    env:
+      - name: BP_FUNCTION
+        value: func.main
   serviceClaims:
     - name: postgres
       ref:
