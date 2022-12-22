@@ -29,4 +29,4 @@ def main(req: Any):
     db = postgresql.open()
     get_table = db.prepare("SELECT * from information_schema.tables WHERE table_name = $1")
     """
-    return print(db_url)
+    return db_url
