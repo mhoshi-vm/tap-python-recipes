@@ -24,7 +24,9 @@ def main(req: Any):
         print("SERVICE_BINDING_ROOT env var not set")
 
     db_url = 'pq://' + username + ":" + password + "@" + host + ":" + port + "/" + database
+
+    """
     db = postgresql.open()
-    print(db_url)
     get_table = db.prepare("SELECT * from information_schema.tables WHERE table_name = $1")
-    return print(get_table("tables"))
+    """
+    return print(db_url)
