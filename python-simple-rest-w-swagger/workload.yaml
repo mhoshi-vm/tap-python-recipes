@@ -4,7 +4,7 @@ metadata:
   labels:
     apis.apps.tanzu.vmware.com/register-api: "true"
     apps.tanzu.vmware.com/workload-type: web
-  name: py-simple
+  name: py-simple-api-doc
 spec:
   params:
     - name: annotations
