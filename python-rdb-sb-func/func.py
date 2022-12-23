@@ -12,7 +12,8 @@ def main(req: Any):
 
     try:
         sb = binding.ServiceBinding()
-        bindings_list = sb.bindings("postgresql")
+        print(sb.all_bindings())
+        bindings_list = sb.bindings("aaaa")
         if not bindings_list[0]:
             host = bindings_list[0].get("host")
             port = bindings_list[0].get("port")
