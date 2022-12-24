@@ -1,0 +1,13 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: py-func
+spec:
+  build:
+    env:
+    - name: BP_FUNCTION
+      value: func.main
+    - name: PYTHONUNBUFFERED
+      value: "TRUE"
