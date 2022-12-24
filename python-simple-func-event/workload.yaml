@@ -3,7 +3,7 @@ kind: Workload
 metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: web
-  name: py-func
+  name: py-func-event
 spec:
   build:
     env:
