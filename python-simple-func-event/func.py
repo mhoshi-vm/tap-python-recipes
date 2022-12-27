@@ -1,6 +1,6 @@
 from typing import Any
 
 def main(data: Any, attributes: dict):
-    # Your function implementation goes here
-    print(data)
-    return "Data dumped"
+    print("Attributes" + str(attributes))
+    print("Handled cloudevent!")
+    return attributes, "Handled cloudevent!"
