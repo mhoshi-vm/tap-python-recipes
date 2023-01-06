@@ -4,6 +4,7 @@ metadata:
   labels:
     apis.apps.tanzu.vmware.com/register-api: "true"
     apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: py-simple-api-doc
   name: py-simple-api-doc
 spec:
   params:

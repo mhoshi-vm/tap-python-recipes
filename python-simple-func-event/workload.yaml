@@ -2,6 +2,7 @@ apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
   labels:
+    app.kubernetes.io/part-of: py-func-event
     apps.tanzu.vmware.com/workload-type: web
   name: py-func-event
 spec:
