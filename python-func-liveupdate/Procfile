@@ -1,0 +1,1 @@
+web: watchexec --verbose --restart --watch /workspace -- python -m pyfunc start
