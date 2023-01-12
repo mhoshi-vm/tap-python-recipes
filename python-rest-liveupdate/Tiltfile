@@ -2,7 +2,7 @@ SOURCE_IMAGE = os.getenv("SOURCE_IMAGE")
 
 k8s_custom_deploy(
     'py-live',
-    apply_cmd="tanzu apps workload apply workload.yaml --live-update" +
+    apply_cmd="tanzu apps workload apply -f workload.yaml --live-update" +
                " --local-path . " +
                " --source-image " + SOURCE_IMAGE +
                " --yes >/dev/null" +
