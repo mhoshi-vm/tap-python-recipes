@@ -1,0 +1,1 @@
+web: watchexec --verbose --restart --watch /workspace -- gunicorn server:app
