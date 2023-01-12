@@ -9,7 +9,7 @@ k8s_custom_deploy(
                " && kubectl get workload py-func-live -o yaml",
     delete_cmd="tanzu apps workload delete -f workload.yaml --yes",
     container_selector='workload',
-    deps=['./server.py'],
+    deps=['./func.py'],
     live_update=[
     sync('.', '/workspace')
   ]
