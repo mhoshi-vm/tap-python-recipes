@@ -1,0 +1,9 @@
+apiVersion: conventions.carto.run/v1alpha1
+kind: ClusterPodConvention
+metadata:
+  name: python-func-convention
+spec:
+  priority: Early
+  webhook:
+    clientConfig:
+      url: https://my-convention-python-demo.tap01.lespaulstudioplus.info/convention

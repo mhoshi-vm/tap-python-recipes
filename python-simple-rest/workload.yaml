@@ -4,4 +4,5 @@ metadata:
   labels:
     app.kubernetes.io/part-of: py-simple
     apps.tanzu.vmware.com/workload-type: web
+    withKbld: ""
   name: py-simple
