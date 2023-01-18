@@ -1,4 +1,4 @@
-package jp.vmware.tanzu.pythonfuncconvention.model;
+package jp.vmware.tanzu.pythonfuncconvention.json;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
