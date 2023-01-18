@@ -29,6 +29,7 @@ public class PythonFuncConvention implements Convention {
 		V1PodTemplateSpec podTemplateSpec = podConventionContextSpec.template();
 		ImageConfig[] imageConfigs = podConventionContextSpec.imageConfig();
 
+
 		for (ImageConfig imageConfig : imageConfigs) {
 			BOM[] boms = imageConfig.boms();
 			for (BOM bom : boms) {
@@ -54,7 +55,7 @@ public class PythonFuncConvention implements Convention {
 
 										V1HTTPGetAction livenessHttp = new V1HTTPGetAction();
 										livenessHttp.setPath("/health/live");
-										livenessHttp.setPort(new IntOrString(8080));
+										livenessHttp.setPort(new IntOrString("http"));
 
 										liveness.setHttpGet(livenessHttp);
 										liveness.setInitialDelaySeconds(10);
@@ -64,16 +65,18 @@ public class PythonFuncConvention implements Convention {
 										V1Probe readiness = new V1Probe();
 										V1HTTPGetAction readinessHttp = new V1HTTPGetAction();
 										readinessHttp.setPath("/health/ready");
-										readinessHttp.setPort(new IntOrString(8080));
+										readinessHttp.setPort(new IntOrString("http"));
 
 										readiness.setHttpGet(readinessHttp);
 										readiness.setInitialDelaySeconds(10);
 										readiness.setPeriodSeconds(3);
 										readiness.setFailureThreshold(20);
 
+
 										V1Container container = podTemplateSpec.getSpec().getContainers().get(0);
 
-										container.setLivenessProbe(liveness);
+										/*container.setLivenessProbe(liveness);*/
+
 										container.setReadinessProbe(readiness);
 
 									}
