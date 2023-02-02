@@ -10,5 +10,6 @@ spec:
     env:
     - name: BP_FUNCTION
       value: func.main
+  env:
     - name: PYTHONUNBUFFERED
       value: "TRUE"
