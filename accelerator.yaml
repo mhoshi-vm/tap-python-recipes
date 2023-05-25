@@ -17,10 +17,10 @@ accelerator:
     inputType: select
     label: Event Type
     choices:
-    - value: python-simple-rest
-      text: シンプルなWebアプリケーションのデプロイ
+    - value: 
+      text: simple-web-app
     - value: python-simple-func
-      text: Functionアプリケーションのデプロイ
+      text: Function-application-deploy
     defaultValue: python-simple-rest
     required: true
 
