@@ -49,7 +49,7 @@ accelerator:
 engine:
   merge:
     - include: [ "python-simple-rest/*" ]
-      condition: "#interfaceType == 'simple-rest'"
+      condition: "#interfaceType == 'python-simple-rest'"
       chain:
       - type: ReplaceText
         substitutions:
@@ -57,7 +57,7 @@ engine:
           with: "#functionName"
 
     - include: [ "python-simple-func/*" ]
-      condition: "#interfaceType == 'simple-func'"
+      condition: "#interfaceType == 'python-simple-func'"
       chain:
       - type: ReplaceText
         substitutions:
