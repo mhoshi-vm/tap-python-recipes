@@ -17,10 +17,22 @@ accelerator:
     inputType: select
     label: Event Type
     choices:
-    - value: 
-      text: simple-web-app
+    - value: python-simple-rest
+      text: シンプルなWebアプリケーションのデプロイ
     - value: python-simple-func
-      text: Function-application-deploy
+      text: Functionアプリケーションのデプロイ
+    - value: python-simple-func-w-test
+      text: "テスト&スキャンのスクリプトの登録"
+    - value: python-simple-rest-w-swagger
+      text: 動的API登録の確認
+    - value: python-rdb-sb-func
+      text: "Service Bindings 連携の確認"
+    - value: python-rest-liveupdate
+      text: "従来型コードでLive Update"
+    - value: python-func-liveupdate
+      text: "Functions アプリケーションでLiveUpdate"
+    - value: python-simple-func-w-gitops
+      text: "GitOps モードのデプロイ"
     defaultValue: python-simple-rest
     required: true
 
@@ -58,6 +70,56 @@ engine:
 
     - include: [ "python-simple-func/*" ]
       condition: "#interfaceType == 'python-simple-func'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+    - include: [ "python-simple-func-w-test/*" ]
+      condition: "#interfaceType == 'python-simple-func-w-test'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+    - include: [ "python-simple-rest-w-swagger/*" ]
+      condition: "#interfaceType == 'python-simple-rest-w-swagger'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+    - include: [ "python-rdb-sb-func/*" ]
+      condition: "#interfaceType == 'python-rdb-sb-func'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+
+    - include: [ "python-rest-liveupdate/*" ]
+      condition: "#interfaceType == 'python-rest-liveupdate'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+
+    - include: [ "python-func-liveupdate/*" ]
+      condition: "#interfaceType == 'python-func-liveupdate'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+    - include: [ "python-simple-func-w-gitops/*" ]
+      condition: "#interfaceType == 'python-simple-func-w-gitops'"
       chain:
       - type: ReplaceText
         substitutions:
