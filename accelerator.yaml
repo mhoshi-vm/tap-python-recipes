@@ -2,6 +2,9 @@ accelerator:
   displayName: Python Function
   description: A FaaS Python function powered by Function Buildpacks for Knative
   iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
+  tags:
+    - simple
+    - python recipies
   options:
   - name: functionName
     inputType: text
