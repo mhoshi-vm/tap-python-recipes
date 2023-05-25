@@ -4,7 +4,8 @@ accelerator:
   iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
   tags:
     - simple
-    - python recipies
+    - getting-started
+
   options:
   - name: functionName
     inputType: text
@@ -45,6 +46,8 @@ accelerator:
     required: true
     defaultValue: "main"
 
+engine:
+  merge:
     - include: [ "python-simple-rest" ]
       condition: "#interfaceType == 'simple-rest'"
       chain:
