@@ -1,0 +1,59 @@
+accelerator:
+  displayName: Python Function
+  description: A FaaS Python function powered by Function Buildpacks for Knative
+  iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
+  options:
+  - name: functionName
+    inputType: text
+    label: Default function name
+    defaultValue: tap-python-recipies 
+    required: true
+    
+  - name: interfaceType
+    inputType: select
+    label: Event Type
+    choices:
+    - value: simple-rest
+      text: simple-rest
+    - value: simple-func
+      text: simple-func
+    defaultValue: simple-rest
+    required: true
+
+  - name: gitUrl
+    label: Git Repository URL
+    display: true
+    description: Change this to the Git repository you will use to store this accelerator's files
+    inputType: text
+    dependsOn:
+      name: includeTap
+    dataType: string
+    required: true
+    defaultValue: "https://github.com/gordon-jin/tap-python-recipies.git"
+
+  - name: gitBranch
+    label: Git Repository Branch
+    display: true
+    description: The corresponding branch of the Git repository
+    inputType: text
+    dependsOn:
+      name: includeTap
+    dataType: string
+    required: true
+    defaultValue: "main"
+
+    - include: [ "python-simple-rest" ]
+      condition: "#interfaceType == 'simple-rest'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
+
+    - include: [ "python-simple-func" ]
+      condition: "#interfaceType == 'simple-func'"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: main
+          with: "#functionName"
