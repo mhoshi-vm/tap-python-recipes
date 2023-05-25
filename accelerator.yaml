@@ -10,7 +10,7 @@ accelerator:
   - name: functionName
     inputType: text
     label: Default function name
-    defaultValue: tap-python-recipies 
+    defaultValue: python-simple-rest
     required: true
     
   - name: interfaceType
@@ -18,9 +18,9 @@ accelerator:
     label: Event Type
     choices:
     - value: python-simple-rest
-      text: python-simple-rest
+      text: シンプルなWebアプリケーションのデプロイ
     - value: python-simple-func
-      text: python-simple-func
+      text: Functionアプリケーションのデプロイ
     defaultValue: python-simple-rest
     required: true
 
