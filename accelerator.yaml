@@ -9,13 +9,13 @@ accelerator:
   options:
   - name: functionName
     inputType: text
-    label: Default function name
+    label: Project Name
     defaultValue: python-simple-rest
     required: true
     
   - name: interfaceType
     inputType: select
-    label: Event Type
+    label: Choose Python Framework
     choices:
     - value: python-simple-rest
       text: シンプルなWebアプリケーションのデプロイ
