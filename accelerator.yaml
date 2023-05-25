@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Python Function
+  displayName: TAP Python Recipies
   description: A FaaS Python function powered by Function Buildpacks for Knative
   iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
   tags:
@@ -17,11 +17,11 @@ accelerator:
     inputType: select
     label: Event Type
     choices:
-    - value: simple-rest
-      text: simple-rest
-    - value: simple-func
-      text: simple-func
-    defaultValue: simple-rest
+    - value: python-simple-rest
+      text: python-simple-rest
+    - value: python-simple-func
+      text: python-simple-func
+    defaultValue: python-simple-rest
     required: true
 
   - name: gitUrl
