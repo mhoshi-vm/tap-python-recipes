@@ -4,7 +4,7 @@ accelerator:
   iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
   tags:
     - simple
-    - getting-started
+    - python-recipies
 
   options:
   - name: functionName
@@ -12,15 +12,27 @@ accelerator:
     label: Project Name
     defaultValue: python-simple-rest
     required: true
+
+  - name: branchName
+    inputType: text
+    label: Branch-name
+    defaultValue: main
+    required: true
+
+  - name: ownerName
+    inputType: text
+    label: Owner-name
+    defaultValue: mhoshi-vm
+    required: true
     
   - name: interfaceType
     inputType: select
     label: Choose Python Framework
     choices:
     - value: python-simple-rest
-      text: シンプルなWebアプリケーションのデプロイ
+      text: "シンプルなWebアプリケーションのデプロイ"
     - value: python-simple-func
-      text: Functionアプリケーションのデプロイ
+      text: "Functionアプリケーションのデプロイ"
     - value: python-simple-func-w-test
       text: "テスト&スキャンのスクリプトの登録"
     - value: python-simple-rest-w-swagger
@@ -76,7 +88,7 @@ engine:
         - text: main
           with: "#functionName"
 
-    - include: [ "python-simple-func-w-test/*" ]
+    - include: [ "python-simple-func-w-test/func_test.py", "python-simple-func-w-test/func.py" ]
       condition: "#interfaceType == 'python-simple-func-w-test'"
       chain:
       - type: ReplaceText
@@ -102,6 +114,7 @@ engine:
 
 
     - include: [ "python-rest-liveupdate/*" ]
+      exclude: [ "config/*.yaml" ]
       condition: "#interfaceType == 'python-rest-liveupdate'"
       chain:
       - type: ReplaceText
@@ -123,5 +136,7 @@ engine:
       chain:
       - type: ReplaceText
         substitutions:
-        - text: main
-          with: "#functionName"
+        - text: "  - name: gitops_branch\n    value: main"
+          with: "'  - name: gitops_branch\n    value: ' + #branchName"
+        - text: "  - name: gitops_repository_owner\n    value: mhoshi-vm"
+          with: "'  - name: gitops_repository_owner\n    value: ' + #ownerName"
