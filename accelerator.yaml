@@ -1,30 +1,26 @@
 accelerator:
   displayName: TAP Python Recipies
-  description: Application Accelator for all TAP Python Recipies repository 
+  description: "App Operators が利用していた tap-python-recipies の各リポジトリを App Acclerator 経由で作成"
   iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
   tags:
     - simple
     - python-recipies
-
   options:
   - name: functionName
     inputType: text
     label: Project Name
     defaultValue: python-simple-rest
     required: true
-
   - name: branchName
     inputType: text
     label: Branch-name
     defaultValue: main
     required: true
-
   - name: ownerName
     inputType: text
     label: Owner-name
     defaultValue: mhoshi-vm
     required: true
-    
   - name: interfaceType
     inputType: select
     label: Choose Python Framework
@@ -47,7 +43,6 @@ accelerator:
       text: "GitOps モードのデプロイ"
     defaultValue: python-simple-rest
     required: true
-
 engine:
   merge:
     - include: [ "python-simple-rest/*" ]
@@ -57,7 +52,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
     - include: [ "python-simple-func/*" ]
       condition: "#interfaceType == 'python-simple-func'"
       chain:
@@ -65,7 +59,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
     - include: [ "python-simple-func-w-test/*" ]
       condition: "#interfaceType == 'python-simple-func-w-test'"
       chain:
@@ -73,7 +66,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
     - include: [ "python-simple-rest-w-swagger/*" ]
       condition: "#interfaceType == 'python-simple-rest-w-swagger'"
       chain:
@@ -81,7 +73,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
     - include: [ "python-rdb-sb-func/*" ]
       condition: "#interfaceType == 'python-rdb-sb-func'"
       chain:
@@ -89,8 +80,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
-
     - include: [ "python-rest-liveupdate/*" ]
       exclude: [ "config/*.yaml" ]
       condition: "#interfaceType == 'python-rest-liveupdate'"
@@ -99,8 +88,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
-
     - include: [ "python-func-liveupdate/*" ]
       condition: "#interfaceType == 'python-func-liveupdate'"
       chain:
@@ -108,7 +95,6 @@ engine:
         substitutions:
         - text: main
           with: "#functionName"
-
     - include: [ "python-simple-func-w-gitops/*" ]
       condition: "#interfaceType == 'python-simple-func-w-gitops'"
       chain:
