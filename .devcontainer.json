@@ -1,0 +1,11 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "features": {
+        "projects.registry.vmware.com/tanzu-developer-containers/features/vmware-tanzu-dev-tools:0.1.0-alpha.3": {},
+        "ghcr.io/devcontainers/features/aws-cli:1":{},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+    "otherPortsAttributes": {
+        "onAutoForward": "silent"
+    }
+}
