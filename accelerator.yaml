@@ -54,19 +54,47 @@ engine:
   merge:
     - include: [ "python-simple-rest/*" ]
       condition: "#interfaceType == 'python-simple-rest'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-simple-func/*" ]
       condition: "#interfaceType == 'python-simple-func'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-simple-func-w-test/*" ]
       condition: "#interfaceType == 'python-simple-func-w-test'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-simple-rest-w-swagger/*" ]
       condition: "#interfaceType == 'python-simple-rest-w-swagger'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-rdb-sb-func/*" ]
       condition: "#interfaceType == 'python-rdb-sb-func'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-rest-liveupdate/*" ]
       exclude: [ "config/*.yaml" ]
       condition: "#interfaceType == 'python-rest-liveupdate'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-func-liveupdate/*" ]
       condition: "#interfaceType == 'python-func-liveupdate'"
+      chain:
+      - type: RewritePath
+        regex: python-.*?/(.*)
+        rewriteTo: "#g1"
     - include: [ "python-simple-func-w-gitops/*" ]
       condition: "#interfaceType == 'python-simple-func-w-gitops'"
       chain:
@@ -76,10 +104,9 @@ engine:
           with: "'  - name: gitops_branch\n    value: ' + #branchName"
         - text: "  - name: gitops_repository_owner\n    value: mhoshi-vm"
           with: "'  - name: gitops_repository_owner\n    value: ' + #ownerName"
-    - include: [ ".devcontainer.json" ]
-      condition: "#includeDevContainer"
-    - include: [ "**" ]
-      chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
+    - include: [ ".devcontainer.json" ]
+      condition: "#includeDevContainer"
+
