@@ -81,5 +81,5 @@ engine:
     - include: [ "**" ]
       chain:
       - type: RewritePath
-        regex: python-.*/(.*)
+        regex: python-.*?/(.*)
         rewriteTo: "#g1"
