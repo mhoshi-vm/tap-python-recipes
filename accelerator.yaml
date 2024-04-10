@@ -44,6 +44,12 @@ accelerator:
       text: "GitOps モードのデプロイ"
     defaultValue: python-simple-rest
     required: true
+  - name: includeDevContainer
+    inputType: checkbox
+    dataType: boolean
+    label: Include .devcontainer.json (amd64 support only)
+    description: Experimental support for "Visual Studio Code Dev Containers".
+    defaultValue: false
 engine:
   merge:
     - include: [ "python-simple-rest/*" ]
@@ -70,3 +76,5 @@ engine:
           with: "'  - name: gitops_branch\n    value: ' + #branchName"
         - text: "  - name: gitops_repository_owner\n    value: mhoshi-vm"
           with: "'  - name: gitops_repository_owner\n    value: ' + #ownerName"
+    - include: [ ".devcontainer.json" ]
+      condition: "#includeDevContainer"
