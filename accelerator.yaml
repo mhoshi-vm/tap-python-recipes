@@ -78,3 +78,8 @@ engine:
           with: "'  - name: gitops_repository_owner\n    value: ' + #ownerName"
     - include: [ ".devcontainer.json" ]
       condition: "#includeDevContainer"
+    - include: [ "**" ]
+      chain:
+      - type: RewritePath
+        regex: python-.*/(.*)
+        rewriteTo: "#g1"
