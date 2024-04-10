@@ -1,5 +1,6 @@
 {
     "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "onCreateCommand": "tanzu config eula accept && tanzu config set env.TANZU_CLI_CEIP_OPT_IN_PROMPT_ANSWER no",
     "features": {
         "projects.registry.vmware.com/tanzu-developer-containers/features/vmware-tanzu-dev-tools:0.1.0-alpha.3": {},
         "ghcr.io/devcontainers/features/aws-cli:1":{},
