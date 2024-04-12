@@ -6,7 +6,7 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: true
     app.kubernetes.io/part-of: py-simple
-  name: py-simple-api-doc
+  name: py-simple-swagger
 spec:
   params:
     - name: annotations
