@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: python-catalog-tap-dev01
+  name: python-simple
   description: python-catalog
   tags:
     - app-accelerator
@@ -11,7 +11,6 @@ metadata:
     - tanzu
   annotations:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=py-simple'
-    'backstage.io/kubernetes-namespace': tap-dev01
 spec:
   type: service
   lifecycle: experimental

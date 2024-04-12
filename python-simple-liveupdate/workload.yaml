@@ -2,16 +2,13 @@ apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
   labels:
-    app.kubernetes.io/part-of: py-func-live
+    app.kubernetes.io/part-of: py-simple
     apps.tanzu.vmware.com/workload-type: web
-  name: py-func-live
+    apps.tanzu.vmware.com/has-tests: true
+  name: py-live
 spec:
   params:
     - name: annotations
       value:
         autoscaling.knative.dev/minScale: "1"
         autoscaling.knative.dev/maxScale: "1"
-  build:
-    env:
-      - name: BP_FUNCTION
-        value: func.main

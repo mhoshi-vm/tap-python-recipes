@@ -1,0 +1,4 @@
+py-postgresql
+pyservicebinding
+Flask
+gunicorn

@@ -2,14 +2,11 @@ apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
   labels:
-    app.kubernetes.io/part-of: py-sb
+    app.kubernetes.io/part-of: py-simple
     apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: true
   name: py-sb
 spec:
-  build:
-    env:
-      - name: BP_FUNCTION
-        value: func.main
   env:
     - name: SERVICE_BINDING_ROOT
       value: "/bindings"

@@ -1,0 +1,119 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: python-test-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test
+    apps.tanzu.vmware.com/language: python
+spec:
+  params:
+    - name: source-url
+      type: string
+    - name: source-revision
+      type: string
+  tasks:
+    - name: test-coverage
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        metadata: {}
+        params:
+          - name: source-url
+            type: string
+          - name: source-revision
+            type: string
+        spec: null
+        steps:
+          - name: test
+            #@ if hasattr(data.values, "python_test_image"):
+            image: #@ data.values.python_test_image
+            #@ else:
+            image: python:latest
+            #@ end
+            resources: {}
+            script: |-
+              set -ex
+              whoami
+              cd `mktemp -d`
+              export HOME=$PWD
+              export PATH=$HOME/.local/bin:$PATH
+              
+              wget -qO- $(params.source-url) | tar xvz -m
+              pip install -r requirements.txt --user
+              pip show pytest || {
+                echo "###\nWarning: Pytest is missing in your requirements\n###";
+                pip install pytest --user
+              }
+              pip show coverage || {
+                echo "###\nWarning: Coverage is missing in your requirements\n###";
+                pip install coverage --user
+              }
+              pytest
+              coverage run -m pytest .
+              coverage report -m
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: skip-test-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test
+spec:
+  tasks:
+    - name: test
+      taskSpec:
+        steps:
+          - name: test
+            image: ghcr.io/openzipkin/alpine:3.18.0
+            script: |-
+              echo hello
+---
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+spec:
+  regoFile: |
+    package main
+
+    deny[msg] {
+    	false
+    	msg = "dummy"
+    }
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-editor
+  annotations:
+    kapp.k14s.io/change-group: "sa"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app-editor-bindings
+  annotations:
+    kapp.k14s.io/change-group: "sa"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: app-editor
+subjects:
+  - kind: ServiceAccount
+    name: app-editor
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-editor-token
+  annotations:
+    kubernetes.io/service-account.name: app-editor
+    kapp.k14s.io/change-rule: "upsert after upserting sa"
+type: kubernetes.io/service-account-token

@@ -1,9 +1,8 @@
 import postgresql
 from pyservicebinding import binding
-from typing import Any
 
 
-def main(req: Any):
+def return_url():
     try:
         sb = binding.ServiceBinding()
         print(sb.all_bindings())

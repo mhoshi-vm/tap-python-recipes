@@ -1,10 +1,10 @@
 accelerator:
-  displayName: TAP Python Recipies
-  description: "tap-python-recipies の App Acclerator "
+  displayName: TAP Python Recipes
+  description: TAP Python Recipes
   iconUrl: https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png
   tags:
     - simple
-    - python-recipies
+    - python-recipes
   options:
   - name: branchName
     inputType: text
@@ -26,23 +26,19 @@ accelerator:
     inputType: select
     label: Choose Python Framework
     choices:
-    - value: python-simple-rest
-      text: "シンプルなWebアプリケーションのデプロイ"
-    - value: python-simple-func
-      text: "Functionアプリケーションのデプロイ"
-    - value: python-simple-func-w-test
-      text: "テスト&スキャンのスクリプトの登録"
-    - value: python-simple-rest-w-swagger
-      text: "動的API登録の確認"
-    - value: python-rdb-sb-func
-      text: "Service Bindings 連携の確認"
-    - value: python-rest-liveupdate
-      text: "従来型コードでLive Update"
-    - value: python-func-liveupdate
-      text: "Functions アプリケーションでLiveUpdate"
-    - value: python-simple-func-w-gitops
-      text: "GitOps モードのデプロイ"
-    defaultValue: python-simple-rest
+    - value: python-simple
+      text: シンプルな Flask アプリケーション
+    - value: python-simple-test
+      text: テストとシンプルな Flask アプリケーション
+    - value: python-simple-swagger
+      text: OpenAPI 対応の Flask アプリケーション
+    - value: python-simple-rdb-sb
+      text: RDB への接続可能な Flask アプリケーション
+    - value: python-simple-liveupdate
+      text: LiveUpdate 機能付き Flask アプリケーション
+    - value: python-simple-gitops
+      text: GitOps 対応のコード Flask アプリケーション
+    defaultValue: python-simple
     required: true
   - name: includeDevContainer
     inputType: checkbox
@@ -52,51 +48,44 @@ accelerator:
     defaultValue: false
 engine:
   merge:
-    - include: [ "python-simple-rest/*" ]
-      condition: "#interfaceType == 'python-simple-rest'"
+    - include: [ "python-simple/*" ]
+      condition: "#interfaceType == 'python-simple'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-simple-func/*" ]
-      condition: "#interfaceType == 'python-simple-func'"
+    - include: [ "python-simple-test/*" ]
+      condition: "#interfaceType == 'python-simple-test'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-simple-func-w-test/*" ]
-      condition: "#interfaceType == 'python-simple-func-w-test'"
+    - include: [ "python-simple-swagger/*" ]
+      condition: "#interfaceType == 'python-simple-swagger'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-simple-rest-w-swagger/*" ]
-      condition: "#interfaceType == 'python-simple-rest-w-swagger'"
+    - include: [ "python-simpld-rdb-sb/*" ]
+      condition: "#interfaceType == 'python-simpld-rdb-sb'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-rdb-sb-func/*" ]
-      condition: "#interfaceType == 'python-rdb-sb-func'"
+    - include: [ "python-simple-liveupdate/*" ]
+      condition: "#interfaceType == 'python-simple-liveupdate'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-rest-liveupdate/*" ]
-      exclude: [ "config/*.yaml" ]
-      condition: "#interfaceType == 'python-rest-liveupdate'"
+    - include: [ "python-simple-liveupdate/*" ]
+      condition: "#interfaceType == 'python-simple-liveupdate'"
       chain:
       - type: RewritePath
         regex: python-.*?/(.*)
         rewriteTo: "#g1"
-    - include: [ "python-func-liveupdate/*" ]
-      condition: "#interfaceType == 'python-func-liveupdate'"
-      chain:
-      - type: RewritePath
-        regex: python-.*?/(.*)
-        rewriteTo: "#g1"
-    - include: [ "python-simple-func-w-gitops/*" ]
-      condition: "#interfaceType == 'python-simple-func-w-gitops'"
+    - include: [ "python-simple-gitops/*" ]
+      condition: "#interfaceType == 'python-simple-gitops'"
       chain:
       - type: ReplaceText
         substitutions:
