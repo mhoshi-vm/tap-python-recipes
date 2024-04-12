@@ -49,31 +49,15 @@ spec:
               pip install -r requirements.txt --user
               pip show pytest || {
                 echo "###\nWarning: Pytest is missing in your requirements\n###";
-                pip install pytest --user
+                exit
               }
               pip show coverage || {
                 echo "###\nWarning: Coverage is missing in your requirements\n###";
-                pip install coverage --user
+                exit
               }
               pytest
               coverage run -m pytest .
               coverage report -m
----
-apiVersion: tekton.dev/v1beta1
-kind: Pipeline
-metadata:
-  name: skip-test-pipeline
-  labels:
-    apps.tanzu.vmware.com/pipeline: test
-spec:
-  tasks:
-    - name: test
-      taskSpec:
-        steps:
-          - name: test
-            image: ghcr.io/openzipkin/alpine:3.18.0
-            script: |-
-              echo hello
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy

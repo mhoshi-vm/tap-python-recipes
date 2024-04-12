@@ -6,9 +6,3 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: true
   name: py-simple
-spec:
-  params:
-    - name: testing_pipeline_matching_labels
-      value:
-        apps.tanzu.vmware.com/pipeline: test
-        apps.tanzu.vmware.com/language: python
