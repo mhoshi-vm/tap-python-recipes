@@ -11,7 +11,7 @@ metadata:
     - tanzu
   annotations:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=py-simple'
-    'backstage.io/kubernetes-namespace': tap-dev01
+    'backstage.io/kubernetes-namespace': tap-dev02
 spec:
   type: service
   lifecycle: experimental
